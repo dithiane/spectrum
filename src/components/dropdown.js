@@ -3,10 +3,6 @@ import React, { useRef, useEffect, useContext } from "react";
 import { RestaurantContext } from '../context/restaurantContext'
 
 const Dropdown = (props) => {
-
-    let refState = useRef(null)
-    let refGenre = useRef(null)
-    let refName = useRef(null)
     let refDropdown = useRef(null)
 
     const { toggleFilter, setWorkArray, restaurantsShelf, filterOn } = useContext(RestaurantContext)
@@ -49,17 +45,17 @@ const Dropdown = (props) => {
         <div className="dropdown"
             ref={el => { refDropdown = el }} >
             <ul className="dropdown_list">
-                <li ref={el => { refName = el }}
+                <li 
                     className="dropdown_list-item"
                     onMouseDown={(e) => mouseDown(e)}>
                     <span className="dropdown_list-item_name">by Name</span>
                 </li>
-                <li ref={el => { refState = el }}
+                <li 
                     className="dropdown_list-item"
                     onMouseDown={(e) => mouseDown(e)}>
                     <span className="dropdown_list-item_state">by State</span>
                 </li>
-                <li ref={el => { refGenre = el }}
+                <li 
                     className="dropdown_list-item"
                     onMouseDown={(e) => mouseDown(e)}>
                     <span className="dropdown_list-item_genre">by Genre</span>
