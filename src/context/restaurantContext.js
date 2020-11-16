@@ -26,9 +26,13 @@ export const RestaurantContextProvider = (props) => {
     const [workArray, setWorkArray] = useState([])
 
 
+    const setData = (data) => {
+        setRestaurantsShelf(data)
+        setWorkArray(data)
+    }
 
     const getData = async () => {
-        ///let data = 
+
         await db.table("shelf").toArray()
             .then(async function (data) {
                 if (data.length === 0) {
@@ -37,17 +41,14 @@ export const RestaurantContextProvider = (props) => {
                             console.log(err)
                         })
                     db.shelf.bulkPut(res.data);
-                    data = res.data
+                    setData(res.data)
                 } else {
-                    setRestaurantsShelf(data)
-                    setWorkArray(data)
+                    setData(data)
                 }
             })
             .catch((err) => {
                 console.log(err)
             })
-
-
 
     }
 
