@@ -2,10 +2,6 @@ import React, { createContext, useEffect, useState } from 'react';
 import axios from "axios";
 import dexie from "dexie";
 export const RestaurantContext = createContext();
-const options = {
-    headers: { 'Authorization': 'Api-Key q3MNxtfep8Gt' }
-
-};
 
 let db = new dexie("spectrum");
 
@@ -36,7 +32,7 @@ export const RestaurantContextProvider = (props) => {
         await db.table("shelf").toArray()
             .then(async function (data) {
                 if (data.length === 0) {
-                    const res = await axios.get("https://code-challenge.spectrumtoolbox.com/api/restaurants", options)
+                    const res = await axios.get("https://code-challenge.spectrumtoolbox.com/api/restaurants", { headers: { Authorization: process.env.REACT_APP_APIKEY } })
                         .catch((err) => {
                             console.log(err)
                         })
@@ -74,7 +70,7 @@ export const RestaurantContextProvider = (props) => {
 
     useEffect(() => {
         getData()
-
+        //eslint-disable-next-line react-hooks/exhaustive-deps 
     }, []);
 
     useEffect(() => {
