@@ -19,18 +19,18 @@ module.exports = {
 
     searchString(arr, str) {
         str = str.trim().toLowerCase()
-        let matchedItems = []
+        //let matchedItems = []
 
-        matchedItems = arr.filter(function(item){
+        return arr.filter(function(item){
             if (item.name.toLowerCase().includes(str) || (item.city.toLowerCase().includes(str) || (item.genre.toLowerCase().includes(str))))
             return item
         })
-        return matchedItems 
+        //return matchedItems 
     },
 
     filter(arr, type, page) {
         if (!this.isUndefined(arr)) {
-            if (arr.length != 0) {
+            if (arr.length !== 0) {
                 switch (type) {
                     case "name":
                         arr.sort((a, b) => a.name.localeCompare(b.name))
